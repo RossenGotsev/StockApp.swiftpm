@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @State var StockSearch : String
     var body: some View {
         NavigationView{
             VStack{
@@ -19,12 +19,12 @@ struct ContentView: View {
                     .foregroundColor(.blue)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){   
-                            TextField("Search Stocks", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                            TextField("Search Stocks", text: $StockSearch)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(minWidth: 200, idealWidth: 290, maxWidth: 390, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         }
                         ToolbarItem(placement: .navigationBarTrailing){
-                            Button("News") {
+                            Button("Search") {
                                 /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
                             }
                         }
