@@ -7,6 +7,7 @@ struct ContentView: View {
            Stock(symbol: "NVDA", price: 275.67)]
 
 //    @State var StockSearch : String
+    @State var StockSearch = ""
     var body: some View {
         NavigationView{
             VStack{
@@ -34,9 +35,10 @@ struct ContentView: View {
 //                                .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
                         }
                         ToolbarItem(placement: .navigationBarTrailing){
-                            Button("Search") {
-                                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                            NavigationLink("Search"){
+                                StockView()
                             }
+                            
                         }
                         
                         
