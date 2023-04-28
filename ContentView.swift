@@ -5,8 +5,6 @@ struct ContentView: View {
            Stock(symbol: "APPL", price: 168.75),
            Stock(symbol: "MSFT", price: 305.66),
            Stock(symbol: "NVDA", price: 275.67)]
-
-//    @State var StockSearch : String
     @State var StockSearch = ""
     var body: some View {
         NavigationView{
@@ -30,9 +28,9 @@ struct ContentView: View {
                     .foregroundColor(.blue)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){   
-//                            TextField("Search Stocks", text: $StockSearch)
-//                                .textFieldStyle(.roundedBorder)
-//                                .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
+                            TextField("Search Stocks", text: $StockSearch)
+                                .textFieldStyle(.roundedBorder)
+                                .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
                         }
                         ToolbarItem(placement: .navigationBarTrailing){
                             NavigationLink("Search"){
