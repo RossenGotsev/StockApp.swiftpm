@@ -1,6 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    let tempStocks = [
+        Stock(symbol: "APPL", price: 168.75),
+        Stock(symbol: "MSFT", price: 305.66),
+        Stock(symbol: "NVDA", price: 275.67)]
     
     var body: some View {
         NavigationView{
