@@ -5,6 +5,8 @@ struct ContentView: View {
            Stock(symbol: "APPL", price: 168.75),
            Stock(symbol: "MSFT", price: 305.66),
            Stock(symbol: "NVDA", price: 275.67)]
+
+  
     @State var StockSearch = ""
     var body: some View {
         NavigationView{
