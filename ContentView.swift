@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var url = URL(string: "")
+    @State var StockSearch = "IBM"
     let pinnedStocks = [
            Stock(symbol: "APPL", price: 168.75),
            Stock(symbol: "MSFT", price: 305.66),
@@ -35,6 +38,7 @@ struct ContentView: View {
 //                        .frame(height: 250)
                     Divider()
                     Text("*Big Movers")
+                
                 }
                 List(BigMoversStocks){ BigMoversStocks in
                     HStack{
@@ -62,8 +66,15 @@ struct ContentView: View {
                             NavigationLink("Search"){
                                 StockView()
                             }
+                            .onTapGesture {
+                                url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(StockSearch)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
+                            }
                         }
+                        
+                        
                         }
+                
+                
                     }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
