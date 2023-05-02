@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var url = URL(string: "")
-    @State var StockSearch = "IBM"
+    @State var StockSearch = ""
     let pinnedStocks = [
            Stock(symbol: "APPL", price: 168.75),
            Stock(symbol: "MSFT", price: 305.66),
@@ -12,8 +12,7 @@ struct ContentView: View {
         Stock(symbol: "UBER", price: 36.29),
         Stock(symbol: "MAR", price: 177.88),
         Stock(symbol: "PRFT", price: 69.55)]
-
-    @State var StockSearch = ""
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -23,7 +22,7 @@ struct ContentView: View {
                         HStack{
                             VStack{
                                 Text(pinnedStocks.symbol)
-                                Text("$\(pinnedStocks.price, specifier: "%.2f")")
+                                    Text("$\(pinnedStocks.price, specifier: "%.2f")")
                             }
                             Spacer()
                             Button {
