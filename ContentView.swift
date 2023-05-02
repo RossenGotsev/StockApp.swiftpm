@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var StockSearch = ""
+    
+    @State var url = URL(string: "")
+    @State var StockSearch = "IBM"
     var body: some View {
         NavigationView{
             VStack{
@@ -13,6 +15,7 @@ struct ContentView: View {
                     Divider()
                        
                     Text("*Big Movers")
+                
                 }
                 
                 
@@ -27,7 +30,9 @@ struct ContentView: View {
                             NavigationLink("Search"){
                                 StockView()
                             }
-                            
+                            .onTapGesture {
+                                url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(StockSearch)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
+                            }
                         }
                         
                         
