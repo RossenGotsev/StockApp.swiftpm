@@ -12,11 +12,21 @@ struct ContentView: View {
                 VStack{
                     Text("*Pinned Stocks")
                     List(pinnedStocks){ pinnedStocks in
-                               VStack{
-                                   Text(pinnedStocks.symbol)
-                                   Text("$\(pinnedStocks.price, specifier: "%.2f")")
-                               }
-                           }
+                        HStack{
+                            VStack{
+                                Text(pinnedStocks.symbol)
+                                Text("$\(pinnedStocks.price, specifier: "%.2f")")
+                            }
+                            Spacer()
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "pin")
+                                    .font(.title)
+                            }
+
+                        }
+                    }
                     Spacer()
                         .frame(height: 250)
                     Divider()
