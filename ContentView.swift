@@ -25,16 +25,14 @@ struct ContentView: View {
                             Button {
                                 
                             } label: {
-                                Image(systemName: "pin")
+                                Image(systemName: "pin.fill")
                                     .font(.title)
                             }
-
                         }
                     }
                     Spacer()
-                        .frame(height: 250)
+                    //                        .frame(height: 250)
                     Divider()
-                       
                     Text("*Big Movers")
                 
                 }
@@ -61,7 +59,7 @@ struct ContentView: View {
                     }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
-            }
         }
     }
+}
 
