@@ -25,43 +25,50 @@ struct ContentView: View {
                             Button {
                                 
                             } label: {
-                                Image(systemName: "pin")
+                                Image(systemName: "pin.fill")
                                     .font(.title)
                             }
-
                         }
                     }
                     Spacer()
-                        .frame(height: 250)
+                    //                        .frame(height: 250)
                     Divider()
-                       
                     Text("*Big Movers")
-                
+                    
                 }
                 
                 
-                    .foregroundColor(.blue)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading){   
-                            TextField("Search Stocks", text: $StockSearch)
-                                .textFieldStyle(.roundedBorder)
-                                .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
-                        }
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            NavigationLink("Search"){
-                                StockView()
-                            }
-                         
-                        }
-                        
-                        
-                        }
-                
-                
+                .foregroundColor(.blue)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading){
+                        TextField("Search Stocks", text: $StockSearch)
+                            .textFieldStyle(.roundedBorder)
+                            .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
                     }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        NavigationLink("Search"){
+                            StockView()
+                        }
+                        
+                    }
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        NavigationLink {
+                            NotificationView()
+                        } label: {
+                            Label("notification", systemImage: "bell")
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+                
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
-            }
         }
     }
+}
 
