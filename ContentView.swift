@@ -10,7 +10,6 @@ struct ContentView: View {
            Stock(symbol: "NVDA", price: 275.67)]
 
   
-    @State var StockSearch = ""
     var body: some View {
         NavigationView{
             VStack{
@@ -52,9 +51,7 @@ struct ContentView: View {
                             NavigationLink("Search"){
                                 StockView()
                             }
-                            .onTapGesture {
-                                url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(StockSearch)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
-                            }
+                         
                         }
                         
                         
