@@ -10,16 +10,42 @@ import SwiftUI
 
 struct NotificationView: View {
     @State var notificationInterval = 0
+    let timespan: [String] = [
+        "every minute",
+        "hourly",
+        "daily",
+        "weekly",
+    ]
+    @AppStorage("timespan") var selectedTimespan = ""
+    
     var body: some View {
         
         NavigationView{
             VStack{
-            Text("Notification settings")
-                
+                Group{
+                    VStack(spacing:1){
+                        HStack(spacing:1){
+                            Text("Recieve notifications")
+                            Picker("Timespan of your notifications", selection: $selectedTimespan) {
+                                ForEach(timespan, id: \.self) { time in
+                                    Text(time)
+                                }
+                            }
+                        }
+                    }
+                    Button(action: {
+                        UserDefaults.standard.set(selectedTimespan, forKey: "timespan")
+                    }, label: {
+                        Text("save")
+                            .background(.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    })
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-      
+        .navigationViewStyle(.stack)
     }
 }
 
