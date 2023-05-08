@@ -38,7 +38,6 @@ struct ContentView: View {
                 }
                 
                 
-                    .foregroundColor(.blue)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading){   
                             TextField("Search Stocks", text: $StockSearch)
@@ -60,6 +59,8 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
         }
+        .foregroundColor(.cyan)
     }
+
 }
 
