@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 VStack{
-                    Text("*Pinned Stocks")
+                   
                     List(pinnedStocks){ pinnedStocks in
                         HStack{
                             VStack{
@@ -60,6 +60,7 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
