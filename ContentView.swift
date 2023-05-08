@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 VStack{
-                    Text("*Pinned Stocks")
+                   
                     List(pinnedStocks){ pinnedStocks in
                         HStack{
                             VStack{
@@ -34,33 +34,43 @@ struct ContentView: View {
                     //                        .frame(height: 250)
                     Divider()
                     Text("*Big Movers")
-                
+                    
                 }
                 
                 
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading){   
-                            TextField("Search Stocks", text: $StockSearch)
-                                .textFieldStyle(.roundedBorder)
-                                .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
-                        }
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            NavigationLink("Search"){
-                                StockView()
-                            }
-                         
-                        }
-                        
-                        
-                        }
-                
-                
+                .foregroundColor(.blue)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading){
+                        TextField("Search Stocks", text: $StockSearch)
+                            .textFieldStyle(.roundedBorder)
+                            .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
                     }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        NavigationLink("Search"){
+                            StockView()
+                        }
+                        
+                    }
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        NavigationLink {
+                            NotificationView()
+                        } label: {
+                            Label("notification", systemImage: "bell")
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+                
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.white)
         }
+        .navigationViewStyle(.stack)
         .foregroundColor(.cyan)
     }
-
 }
 
