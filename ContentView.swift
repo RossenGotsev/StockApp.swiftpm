@@ -3,7 +3,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State var url = URL(string: "")
-    @State var StockSearch = "IBM"
+   
+    @EnvironmentObject var SSearch: Search
     let pinnedStocks = [
            Stock(symbol: "APPL", price: 168.75),
            Stock(symbol: "MSFT", price: 305.66),
@@ -41,9 +42,9 @@ struct ContentView: View {
                 .foregroundColor(.blue)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
-                        TextField("Search Stocks", text: $StockSearch)
+                        TextField("Search Stocks", text: $SSearch.search)
                             .textFieldStyle(.roundedBorder)
-                            .frame(minWidth: 200, idealWidth: 290, maxWidth: 390)
+                            .frame(minWidth: 200, idealWidth: 270, maxWidth: 390)
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         NavigationLink("Search"){
