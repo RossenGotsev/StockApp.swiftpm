@@ -10,13 +10,57 @@ import SwiftUI
 
 var url = URL(string: "")
 
+struct LineGraph: Shape{
+    var dataPoints: [CGFloat]
+    func path(in rect: CGRect) -> Path {
+       
+        func point(at ix: Int) -> CGPoint {
+            let point = dataPoints[ix]
+            let x = rect.width * CGFloat(ix) / CGFloat(dataPoints.count - 1)
+            let y = (1 - point) * rect.height
+            
+            return CGPoint(x: x, y: y)
+        }
+        
+       return Path{ p in
+            guard dataPoints.count > 1 else {return}
+            let start = dataPoints[0]
+            p.move(to: CGPoint(x: 0, y: (1 - start) * rect.height))
+            for idx in dataPoints.indices{
+                p.addLine(to: point(at: idx))
+            }
+        }
+    }
+    
+    
+}
+
+
+struct graph: View {
+    var body: some View{
+        LineGraph(dataPoints : chartData.oneMonth.normalized)
+            .stroke(Color.blue)
+            .frame(width:400, height: 300)
+            .border(Color.black)
+    }
+}
+
+extension Array where Element == CGFloat {
+            var normalized: [CGFloat]{
+                if let min = self.min(), let max = self.max() {
+                    return self.map { ($0 - min) / (max - min) }
+                }
+                return []
+            }
+        }
+            
 var StockPrice = ""
 struct StockView: View {
     
     var body: some View {
         NavigationView{
             VStack{
-                
+             graph()
                 Text("*Stock charts")
                 Divider()
                 Spacer()
