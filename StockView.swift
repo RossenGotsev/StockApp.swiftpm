@@ -55,49 +55,72 @@ extension Array where Element == CGFloat {
         }
             
 var StockPrice = ""
+
+
+
 struct StockView: View {
-    
+    @State var StockPrice = ""
+   @State var url = URL(string: "")
+    @EnvironmentObject var SSearch: Search
+
     var body: some View {
         NavigationView{
             VStack{
              graph()
                 Text("*Stock charts")
+                
                 Divider()
-                Spacer()
-                    .frame(height: 200)
-                Text("*Stock prices, dividents, and other info")
-                Text("\(StockPrice)")
+                
+                VStack{
+                    ZStack{
+                        
+                        Rectangle()
+                            .frame(maxWidth: .infinity, maxHeight: 100)
+                            .foregroundColor(.blue)
+                        Text("$\(StockPrice)")
+                            .font(.largeTitle)
+                    }
+                }
+                
+               
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear{
-                url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=JUHAWMR1G46CJSY9")!
-                
-                URLSession.shared.dataTask(with: url!) { (data, response, error) in
-                    if let data = data {
-                                        if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
-                                          
-                                            guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
-
-                                           //print(timeSeriesDictionary["2023-05-05 19:30:00"])
-                                            guard let prices =  timeSeriesDictionary["2023-05-05 19:30:00"] as? NSDictionary else {return}
-                                            guard let stockPrice =  prices["4. close"] as? String else {return}
-                                       print(stockPrice)
-                                           var StockPrice = stockPrice
-                                        }
-                        
-                                    }
-                   
-                }
-                .resume()
-                
+               
+                getPrice()
                 
                
                     
             }
-            
+           
 
         }
       
+    }
+    
+    
+    func getPrice() {
+        url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(SSearch.search)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
+        
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if let data = data {
+                if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
+                    //    print(json)
+                    guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
+                    
+                    //print(timeSeriesDictionary["2023-05-09 20:00:00"])
+                    guard let prices =  timeSeriesDictionary["2023-05-09 20:00:00"] as? NSDictionary else {return}
+                    guard let stockPrice =  prices["4. close"] as? String else {return}
+                    print(stockPrice)
+                    DispatchQueue.main.async {
+                        StockPrice = stockPrice
+                    }
+                    
+                }
+               
+            }
+        }
+        .resume()
     }
 }
