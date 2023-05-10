@@ -15,25 +15,37 @@ struct NotificationView: View {
         "hourly",
         "daily",
         "weekly",
-        ]
-    @State var selectedTimespan: String = ""
+    ]
+    @AppStorage("timespan") var selectedTimespan = ""
+    
     var body: some View {
         
         NavigationView{
             VStack{
                 Group{
-               
-                
-                    Picker("Timespan of your notifications", selection: $selectedTimespan) {
-                        ForEach(timespan, id: \.self) { time in
-                            Text(time)
+                    VStack(spacing:1){
+                        HStack(spacing:1){
+                            Text("Recieve notifications")
+                            Picker("Timespan of your notifications", selection: $selectedTimespan) {
+                                ForEach(timespan, id: \.self) { time in
+                                    Text(time)
+                                }
+                            }
                         }
                     }
+                    Button(action: {
+                        UserDefaults.standard.set(selectedTimespan, forKey: "timespan")
+                    }, label: {
+                        Text("save")
+                            .background(.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(5)
+                    })
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-      
+        .navigationViewStyle(.stack)
     }
 }
 
