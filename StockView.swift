@@ -11,12 +11,12 @@ import SwiftUI
 var url = URL(string: "")
 
 struct LineGraph: Shape{
-    var dataPoints: [CGFloat]
+    var dataPoints: [Double]
     func path(in rect: CGRect) -> Path {
        
         func point(at ix: Int) -> CGPoint {
             let point = dataPoints[ix]
-            let x = rect.width * CGFloat(ix) / CGFloat(dataPoints.count - 1)
+            let x = rect.width * Double(ix) / Double(dataPoints.count - 1)
             let y = (1 - point) * rect.height
             
             return CGPoint(x: x, y: y)
@@ -45,8 +45,8 @@ struct graph: View {
     }
 }
 
-extension Array where Element == CGFloat {
-            var normalized: [CGFloat]{
+extension Array where Element == Double {
+            var normalized: [Double]{
                 if let min = self.min(), let max = self.max() {
                     return self.map { ($0 - min) / (max - min) }
                 }
@@ -106,11 +106,11 @@ struct StockView: View {
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
-                    //    print(json)
+                       // print(json)
                     guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
                     
                     //print(timeSeriesDictionary["2023-05-09 20:00:00"])
-                    guard let prices =  timeSeriesDictionary["2023-05-09 20:00:00"] as? NSDictionary else {return}
+                    guard let prices =  timeSeriesDictionary["2023-05-11 20:00:00"] as? NSDictionary else {return}
                     guard let stockPrice =  prices["4. close"] as? String else {return}
                     print(stockPrice)
                     DispatchQueue.main.async {
