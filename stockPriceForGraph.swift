@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct chartData{
+struct chartData : View{
     @State var url = URL(string: "")
     @EnvironmentObject var SSearch: Search
     @State var StockPrice3 = ""
@@ -36,19 +36,21 @@ struct chartData{
     @State var SSprice14 = 0.0
     @State var StockPrice15 = ""
     @State var SSprice15 = 0.0
-    static let oneMonth: [Double] = [5.5]
+    static let oneMonth: [Double] = [4.3,5.0,6.9,10.7,9.3,7.4,9.9]
+    @State var display = "?"
    
     
     var body: some View {
         VStack{
-            Text("hi")
+            Text("")
+                .onAppear{ GetPrice()}
         }
-       // .onAppear(getPrice())
+        
 
     }
         
     
-    func getPrice() {
+    func GetPrice() {
         url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(SSearch.search)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
         
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
@@ -59,61 +61,61 @@ struct chartData{
                     
                     //print(timeSeriesDictionary["2023-05-09 20:00:00"])
                    
-                    guard let prices3 =  timeSeriesDictionary["2023-05-11 19:00:00"] as? NSDictionary else {return}
+                    guard let prices3 =  timeSeriesDictionary["2023-05-15 15:35:00"] as? NSDictionary else {return}
                     guard let stockPrice3 =  prices3["4. close"] as? String else {return}
-                    guard let prices4 =  timeSeriesDictionary["2023-05-11 19:05:00"] as? NSDictionary else {return}
+                    guard let prices4 =  timeSeriesDictionary["2023-05-15 15:40:00"] as? NSDictionary else {return}
                     guard let stockPrice4 =  prices4["4. close"] as? String else {return}
-                    guard let prices5 =  timeSeriesDictionary["2023-05-11 19:10:00"] as? NSDictionary else {return}
+                    guard let prices5 =  timeSeriesDictionary["2023-05-15 15:45:00"] as? NSDictionary else {return}
                     guard let stockPrice5 =  prices5["4. close"] as? String else {return}
-                    guard let prices6 =  timeSeriesDictionary["2023-05-11 19:15:00"] as? NSDictionary else {return}
+                    guard let prices6 =  timeSeriesDictionary["2023-05-15 15:50:00"] as? NSDictionary else {return}
                     guard let stockPrice6 =  prices6["4. close"] as? String else {return}
-                    guard let prices7 =  timeSeriesDictionary["2023-05-11 19:20:00"] as? NSDictionary else {return}
+                    guard let prices7 =  timeSeriesDictionary["2023-05-15 15:55:00"] as? NSDictionary else {return}
                     guard let stockPrice7 =  prices7["4. close"] as? String else {return}
-                    guard let prices8 =  timeSeriesDictionary["2023-05-11 19:25:00"] as? NSDictionary else {return}
+                    guard let prices8 =  timeSeriesDictionary["2023-05-15 16:00:00"] as? NSDictionary else {return}
                     guard let stockPrice8 =  prices8["4. close"] as? String else {return}
-                    guard let prices9 =  timeSeriesDictionary["2023-05-11 19:30:00"] as? NSDictionary else {return}
+                    guard let prices9 =  timeSeriesDictionary["2023-05-15 16:05:00"] as? NSDictionary else {return}
                     guard let stockPrice9 =  prices9["4. close"] as? String else {return}
-                    guard let prices10 =  timeSeriesDictionary["2023-05-11 19:35:00"] as? NSDictionary else {return}
+                    guard let prices10 =  timeSeriesDictionary["2023-05-15 16:10:00"] as? NSDictionary else {return}
                     guard let stockPrice10 =  prices10["4. close"] as? String else {return}
-                    guard let prices11 =  timeSeriesDictionary["2023-05-11 19:40:00"] as? NSDictionary else {return}
+                    guard let prices11 =  timeSeriesDictionary["2023-05-15 16:15:00"] as? NSDictionary else {return}
                     guard let stockPrice11 =  prices11["4. close"] as? String else {return}
-                    guard let prices12 =  timeSeriesDictionary["2023-05-11 19:45:00"] as? NSDictionary else {return}
+                    guard let prices12 =  timeSeriesDictionary["2023-05-15 17:30:00"] as? NSDictionary else {return}
                     guard let stockPrice12 =  prices12["4. close"] as? String else {return}
-                    guard let prices13 =  timeSeriesDictionary["2023-05-11 19:50:00"] as? NSDictionary else {return}
+                    guard let prices13 =  timeSeriesDictionary["2023-05-15 18:00:00"] as? NSDictionary else {return}
                     guard let stockPrice13 =  prices13["4. close"] as? String else {return}
-                    guard let prices14 =  timeSeriesDictionary["2023-05-11 19:55:00"] as? NSDictionary else {return}
+                    guard let prices14 =  timeSeriesDictionary["2023-05-15 18:40:00"] as? NSDictionary else {return}
                     guard let stockPrice14 =  prices14["4. close"] as? String else {return}
-                    guard let prices15 =  timeSeriesDictionary["2023-05-11 20:00:00"] as? NSDictionary else {return}
+                    guard let prices15 =  timeSeriesDictionary["2023-05-15 19:20:00"] as? NSDictionary else {return}
                     guard let stockPrice15 =  prices15["4. close"] as? String else {return}
                    
                     //print(stockPrice)
                     DispatchQueue.main.async {
-                        StockPrice3 = stockPrice3
-                        StockPrice4 = stockPrice4
-                        StockPrice5 = stockPrice5
-                        StockPrice6 = stockPrice6
-                        StockPrice7 = stockPrice7
-                        StockPrice8 = stockPrice8
-                        StockPrice9 = stockPrice9
-                        StockPrice10 = stockPrice10
-                        StockPrice11 = stockPrice11
-                        StockPrice12 = stockPrice12
-                        StockPrice13 = stockPrice13
-                        StockPrice14 = stockPrice14
-                        StockPrice15 = stockPrice15
-                        SSprice3 = Double(StockPrice3)!
-                        SSprice4 = Double(StockPrice4)!
-                        SSprice5 = Double(StockPrice5)!
-                        SSprice6 = Double(StockPrice6)!
-                        SSprice7 = Double(StockPrice7)!
-                        SSprice8 = Double(StockPrice8)!
-                        SSprice9 = Double(StockPrice9)!
-                        SSprice10 = Double(StockPrice10)!
-                        SSprice11 = Double(StockPrice11)!
-                        SSprice12 = Double(StockPrice12)!
-                        SSprice13 = Double(StockPrice13)!
-                        SSprice14 = Double(StockPrice14)!
-                        SSprice15 = Double(StockPrice15)!
+//                        StockPrice3 = stockPrice3
+//                        StockPrice4 = stockPrice4
+//                        StockPrice5 = stockPrice5
+//                        StockPrice6 = stockPrice6
+//                        StockPrice7 = stockPrice7
+//                        StockPrice8 = stockPrice8
+//                        StockPrice9 = stockPrice9
+//                        StockPrice10 = stockPrice10
+//                        StockPrice11 = stockPrice11
+//                        StockPrice12 = stockPrice12
+//                        StockPrice13 = stockPrice13
+//                        StockPrice14 = stockPrice14
+//                        StockPrice15 = stockPrice15
+                        SSprice3 = Double(stockPrice3)!
+                        SSprice4 = Double(stockPrice4)!
+                        SSprice5 = Double(stockPrice5)!
+                        SSprice6 = Double(stockPrice6)!
+                        SSprice7 = Double(stockPrice7)!
+                        SSprice8 = Double(stockPrice8)!
+                        SSprice9 = Double(stockPrice9)!
+                        SSprice10 = Double(stockPrice10)!
+                        SSprice11 = Double(stockPrice11)!
+                        SSprice12 = Double(stockPrice12)!
+                        SSprice13 = Double(stockPrice13)!
+                        SSprice14 = Double(stockPrice14)!
+                        SSprice15 = Double(stockPrice15)!
                     }
                     
                 }

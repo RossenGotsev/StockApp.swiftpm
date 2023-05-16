@@ -33,8 +33,7 @@ struct ContentView: View {
                     }
                     Spacer()
                     //                        .frame(height: 250)
-                    Divider()
-                    Text("*Big Movers")
+                  
                     
                 }
                 

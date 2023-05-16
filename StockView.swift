@@ -66,11 +66,13 @@ struct StockView: View {
     var body: some View {
         NavigationView{
             VStack{
+                Text("\(SSearch.search)")
+                    .font(.largeTitle)
              graph()
                 Text("*Stock charts")
                 
                 Divider()
-                
+                chartData()
                 VStack{
                     ZStack{
                         
@@ -79,12 +81,14 @@ struct StockView: View {
                             .foregroundColor(.blue)
                         Text("$\(StockPrice)")
                             .font(.largeTitle)
+                            .foregroundColor(.black)
                     }
                 }
                 
                
                 
             }
+            .navigationViewStyle(.stack)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear{
                
@@ -96,6 +100,7 @@ struct StockView: View {
            
 
         }
+        
       
     }
     
@@ -106,11 +111,11 @@ struct StockView: View {
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
-                       // print(json)
+                        //print(json)
                     guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
                     
                     //print(timeSeriesDictionary["2023-05-09 20:00:00"])
-                    guard let prices =  timeSeriesDictionary["2023-05-11 20:00:00"] as? NSDictionary else {return}
+                    guard let prices =  timeSeriesDictionary["2023-05-15 19:20:00"] as? NSDictionary else {return}
                     guard let stockPrice =  prices["4. close"] as? String else {return}
                     print(stockPrice)
                     DispatchQueue.main.async {
@@ -122,5 +127,7 @@ struct StockView: View {
             }
         }
         .resume()
+        
     }
+    
 }
