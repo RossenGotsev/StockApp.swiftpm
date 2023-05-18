@@ -26,17 +26,22 @@ struct NotificationView: View {
                     VStack(spacing:1){
                         HStack(spacing:1){
                             Text("Recieve notifications")
-                            Picker("Timespan of your notifications", selection: $selectedTimespan) {
+                                
+                            Picker("Timespan of your notifications", selection: $selectedTimespan){
                                 ForEach(timespan, id: \.self) { time in
                                     Text(time)
                                 }
+                               
                             }
                         }
                     }
+                    .scaleEffect(2.2)
                     Button(action: {
                         UserDefaults.standard.set(selectedTimespan, forKey: "timespan")
                     }, label: {
                         Text("save")
+                            .font(.largeTitle)
+                            .frame(width: 100, height: 50)
                             .background(.blue)
                             .foregroundColor(.white)
                             .cornerRadius(5)

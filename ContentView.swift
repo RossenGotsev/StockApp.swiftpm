@@ -43,7 +43,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .navigationBarLeading){
                         TextField("Search Stocks", text: $SSearch.search)
                             .textFieldStyle(.roundedBorder)
-                            .frame(minWidth: 200, idealWidth: 270, maxWidth: 390)
+                            .frame(minWidth: 200, idealWidth: 640, maxWidth: 700)
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         NavigationLink("Search"){

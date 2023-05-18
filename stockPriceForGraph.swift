@@ -36,7 +36,7 @@ struct chartData : View{
     @State var SSprice14 = 0.0
     @State var StockPrice15 = ""
     @State var SSprice15 = 0.0
-    static let oneMonth: [Double] = [4.3,5.0,6.9,10.7,9.3,7.4,9.9]
+    static let oneMonth: [Double] = [7.3,6.0,6.9,10.7,9.3,7.4,9.9]
     @State var display = "?"
    
     
