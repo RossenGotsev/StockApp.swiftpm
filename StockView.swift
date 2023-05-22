@@ -43,12 +43,14 @@ struct graph: View {
     var body: some View{
         HStack{
             
-            
-            LineGraph(dataPoints : chartData.oneMonth.normalized)
-                .stroke(Color.blue)
-                .frame(width:760, height: 700)
-                .border(Color.black)
-            VStack(spacing: 200){
+            VStack{
+                LineGraph(dataPoints : chartData.oneMonth.normalized)
+                    .stroke(Color.blue)
+                    .frame(width:300, height: 280)
+                    .border(Color.black)
+                Text("last Hour")
+            }
+            VStack(spacing: 80){
                 Text("$\(StockPrice, specifier: "%.0f")")
                 Text("$\(StockPrice-5, specifier: "%.0f")")
                 Text("$\(StockPrice-10, specifier: "%.0f")")
@@ -73,7 +75,7 @@ struct graph: View {
                     guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
                     
                     //print(timeSeriesDictionary["2023-05-09 20:00:00"])
-                    guard let prices =  timeSeriesDictionary["2023-05-17 20:00:00"] as? NSDictionary else {return}
+                    guard let prices =  timeSeriesDictionary["2023-05-19 18:50:00"] as? NSDictionary else {return}
                     guard let stockPrice =  prices["4. close"] as? String else {return}
                     print(stockPrice)
                     DispatchQueue.main.async {
@@ -109,6 +111,7 @@ struct StockView: View {
 
     var body: some View {
         NavigationView{
+            
             VStack{
                 Text("\(SSearch.search)")
                     .font(.largeTitle)
@@ -117,12 +120,12 @@ struct StockView: View {
              
                 
                 Divider()
-                //chartData()
+                
                 VStack{
                     ZStack{
                         
                         Rectangle()
-                            .frame(maxWidth: .infinity, maxHeight: 400)
+                            .frame(maxWidth: .infinity, maxHeight: 200)
                             .foregroundColor(.blue)
                         Text("$\(StockPrice, specifier: "%.2f")")
                             .font(.largeTitle)
@@ -161,9 +164,9 @@ struct StockView: View {
                     guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
                     
                     //print(timeSeriesDictionary["2023-05-09 20:00:00"])
-                    guard let prices =  timeSeriesDictionary["2023-05-17 20:00:00"] as? NSDictionary else {return}
+                    guard let prices =  timeSeriesDictionary["2023-05-19 18:50:00"] as? NSDictionary else {return}
                     guard let stockPrice =  prices["4. close"] as? String else {return}
-                    print(stockPrice)
+                    //print(stockPrice)
                     DispatchQueue.main.async {
                         StockPrice = Double(stockPrice)!
                     }

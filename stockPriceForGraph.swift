@@ -61,31 +61,31 @@ struct chartData : View{
                     
                     //print(timeSeriesDictionary["2023-05-09 20:00:00"])
                    
-                    guard let prices3 =  timeSeriesDictionary["2023-05-15 15:35:00"] as? NSDictionary else {return}
+                    guard let prices3 =  timeSeriesDictionary["2023-05-19 15:35:00"] as? NSDictionary else {return}
                     guard let stockPrice3 =  prices3["4. close"] as? String else {return}
-                    guard let prices4 =  timeSeriesDictionary["2023-05-15 15:40:00"] as? NSDictionary else {return}
+                    guard let prices4 =  timeSeriesDictionary["2023-05-19 15:40:00"] as? NSDictionary else {return}
                     guard let stockPrice4 =  prices4["4. close"] as? String else {return}
-                    guard let prices5 =  timeSeriesDictionary["2023-05-15 15:45:00"] as? NSDictionary else {return}
+                    guard let prices5 =  timeSeriesDictionary["2023-05-19 15:45:00"] as? NSDictionary else {return}
                     guard let stockPrice5 =  prices5["4. close"] as? String else {return}
-                    guard let prices6 =  timeSeriesDictionary["2023-05-15 15:50:00"] as? NSDictionary else {return}
+                    guard let prices6 =  timeSeriesDictionary["2023-05-19 15:50:00"] as? NSDictionary else {return}
                     guard let stockPrice6 =  prices6["4. close"] as? String else {return}
-                    guard let prices7 =  timeSeriesDictionary["2023-05-15 15:55:00"] as? NSDictionary else {return}
+                    guard let prices7 =  timeSeriesDictionary["2023-05-19 15:55:00"] as? NSDictionary else {return}
                     guard let stockPrice7 =  prices7["4. close"] as? String else {return}
-                    guard let prices8 =  timeSeriesDictionary["2023-05-15 16:00:00"] as? NSDictionary else {return}
+                    guard let prices8 =  timeSeriesDictionary["2023-05-19 16:00:00"] as? NSDictionary else {return}
                     guard let stockPrice8 =  prices8["4. close"] as? String else {return}
-                    guard let prices9 =  timeSeriesDictionary["2023-05-15 16:05:00"] as? NSDictionary else {return}
+                    guard let prices9 =  timeSeriesDictionary["2023-05-19 16:05:00"] as? NSDictionary else {return}
                     guard let stockPrice9 =  prices9["4. close"] as? String else {return}
-                    guard let prices10 =  timeSeriesDictionary["2023-05-15 16:10:00"] as? NSDictionary else {return}
+                    guard let prices10 =  timeSeriesDictionary["2023-05-19 16:10:00"] as? NSDictionary else {return}
                     guard let stockPrice10 =  prices10["4. close"] as? String else {return}
-                    guard let prices11 =  timeSeriesDictionary["2023-05-15 16:15:00"] as? NSDictionary else {return}
+                    guard let prices11 =  timeSeriesDictionary["2023-05-19 16:30:00"] as? NSDictionary else {return}
                     guard let stockPrice11 =  prices11["4. close"] as? String else {return}
-                    guard let prices12 =  timeSeriesDictionary["2023-05-15 17:30:00"] as? NSDictionary else {return}
+                    guard let prices12 =  timeSeriesDictionary["2023-05-19 16:35:00"] as? NSDictionary else {return}
                     guard let stockPrice12 =  prices12["4. close"] as? String else {return}
-                    guard let prices13 =  timeSeriesDictionary["2023-05-15 18:00:00"] as? NSDictionary else {return}
+                    guard let prices13 =  timeSeriesDictionary["2023-05-19 16:45:00"] as? NSDictionary else {return}
                     guard let stockPrice13 =  prices13["4. close"] as? String else {return}
-                    guard let prices14 =  timeSeriesDictionary["2023-05-15 18:40:00"] as? NSDictionary else {return}
+                    guard let prices14 =  timeSeriesDictionary["2023-05-19 18:10:00"] as? NSDictionary else {return}
                     guard let stockPrice14 =  prices14["4. close"] as? String else {return}
-                    guard let prices15 =  timeSeriesDictionary["2023-05-15 19:20:00"] as? NSDictionary else {return}
+                    guard let prices15 =  timeSeriesDictionary["2023-05-19 18:50:00"] as? NSDictionary else {return}
                     guard let stockPrice15 =  prices15["4. close"] as? String else {return}
                    
                     //print(stockPrice)

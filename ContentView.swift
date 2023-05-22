@@ -6,9 +6,9 @@ struct ContentView: View {
    
     @EnvironmentObject var SSearch: Search
     let pinnedStocks = [
-           Stock(symbol: "APPL", price: 168.75),
-           Stock(symbol: "MSFT", price: 305.66),
-           Stock(symbol: "NVDA", price: 275.67)]
+        Stock(symbol: "AAPL", price: 175.92),
+           Stock(symbol: "MSFT", price: 319.40),
+           Stock(symbol: "NVDA", price: 318.30)]
 
   
     var body: some View {
@@ -43,7 +43,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .navigationBarLeading){
                         TextField("Search Stocks", text: $SSearch.search)
                             .textFieldStyle(.roundedBorder)
-                            .frame(minWidth: 200, idealWidth: 640, maxWidth: 700)
+                            .frame(minWidth: 200, idealWidth: 240, maxWidth: 700)
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         NavigationLink("Search"){
