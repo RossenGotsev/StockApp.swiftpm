@@ -15,7 +15,20 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 VStack{
+                    
+                        Text(" Pinned Stocks:")
+                            .font(
+                                    .system(size: 34)
+                                    .weight(.heavy)
+                                    
+                                )
+                            .frame(maxWidth: .infinity, alignment: .leading)
                    
+                        
+//
+                    //Spacer()
+//                        .frame(height:25)
+                    
                     List(pinnedStocks){ pinnedStocks in
                         HStack{
                             VStack{
