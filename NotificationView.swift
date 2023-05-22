@@ -26,7 +26,7 @@ struct NotificationView: View {
                     VStack(spacing:1){
                         HStack(spacing:1){
                             Text("Recieve notifications")
-                                
+                                .foregroundColor(.black)
                             Picker("Timespan of your notifications", selection: $selectedTimespan){
                                 ForEach(timespan, id: \.self) { time in
                                     Text(time)
@@ -47,8 +47,10 @@ struct NotificationView: View {
                             .cornerRadius(5)
                     })
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(LinearGradient(gradient: Gradient(colors: [.white,.blue]), startPoint: .top, endPoint: .bottom))
         }
         .navigationViewStyle(.stack)
     }
