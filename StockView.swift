@@ -38,7 +38,7 @@ struct LineGraph: Shape{
 
 struct graph: View {
     @State var StockPrice = 0.0
-    @State var url = URL(string: "")
+   @State var url = URL(string: "")
     @EnvironmentObject var SSearch: Search
     var body: some View{
         HStack{
@@ -116,6 +116,20 @@ struct StockView: View {
         NavigationView{
             
             VStack{
+                
+                Button{
+                    let newItemName = SSearch.search
+                    let newItemQuantity = StockPrice
+                    let newItem = ShoppingItem(Name: newItemName, Quantity: newItemQuantity)
+                                    
+                                    items.append(newItem)
+                    self.newItemQuantity = 0.0
+                    self.newItemName = ""
+                }label: {
+                    Image(systemName: "pin")
+                }
+                .offset(x: 150, y: 10)
+
                 Text("\(SSearch.search)")
                     .font(.largeTitle)
                     .scaleEffect(2)
