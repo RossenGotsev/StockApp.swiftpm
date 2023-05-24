@@ -10,7 +10,7 @@ class Search: ObservableObject{
     @Published var search : String
     
     init(){
-        search = "IBM"
+        search = "AAPL"
         
     }
     
