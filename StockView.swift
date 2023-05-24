@@ -113,20 +113,32 @@ struct StockView: View {
         NavigationView{
             
             VStack{
+                
+                Button{
+                    
+                }label: {
+                    Image(systemName: "pin")
+                }
+                .offset(x: 150, y: 10)
+
                 Text("\(SSearch.search)")
                     .font(.largeTitle)
                     .scaleEffect(2)
-             graph()
-             
+            
+                Spacer()
+                    .frame(height:100)
+                
+                graph()
                 
                 Divider()
                 
                 VStack{
                     ZStack{
-                        
+                      
+                    
                         Rectangle()
                             .frame(maxWidth: .infinity, maxHeight: 200)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.white)
                         Text("$\(StockPrice, specifier: "%.2f")")
                             .font(.largeTitle)
                             .foregroundColor(.black)
