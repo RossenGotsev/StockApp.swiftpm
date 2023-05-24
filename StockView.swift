@@ -13,7 +13,7 @@ var url = URL(string: "")
 struct LineGraph: Shape{
     var dataPoints: [Double]
     func path(in rect: CGRect) -> Path {
-       
+        
         func point(at ix: Int) -> CGPoint {
             let point = dataPoints[ix]
             let x = rect.width * Double(ix) / Double(dataPoints.count - 1)
@@ -22,7 +22,7 @@ struct LineGraph: Shape{
             return CGPoint(x: x, y: y)
         }
         
-       return Path{ p in
+        return Path{ p in
             guard dataPoints.count > 1 else {return}
             let start = dataPoints[0]
             p.move(to: CGPoint(x: 0, y: (1 - start) * rect.height))
@@ -56,11 +56,11 @@ struct graph: View {
                 Text("$\(StockPrice-10, specifier: "%.0f")")
             }
             .onAppear{
-               
+                
                 GetPrice()
                 
-               
-                    
+                
+                
             }
             
         }
@@ -87,7 +87,7 @@ struct graph: View {
                     }
                     
                 }
-               
+                
             }
         }
         .resume()
@@ -96,14 +96,14 @@ struct graph: View {
 }
 
 extension Array where Element == Double {
-            var normalized: [Double]{
-                if let min = self.min(), let max = self.max() {
-                    return self.map { ($0 - min) / (max - min) }
-                }
-                return []
-            }
+    var normalized: [Double]{
+        if let min = self.min(), let max = self.max() {
+            return self.map { ($0 - min) / (max - min) }
         }
-            
+        return []
+    }
+}
+
 
 
 
@@ -151,8 +151,8 @@ struct StockView: View {
                 
                 VStack{
                     ZStack{
-                      
-                    
+                        
+                        
                         Rectangle()
                             .frame(maxWidth: .infinity, maxHeight: 200)
                             .foregroundColor(.white)
@@ -163,19 +163,33 @@ struct StockView: View {
                     }
                 }
                 
-               
+                
                 
             }
-          
+            .toolbar{
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button{
+                        let newItemName = SSearch.search
+                        let newItemQuantity = StockPrice
+                        let newItem = ShoppingItem(Name: newItemName, Quantity: newItemQuantity)
+                        
+                        items.append(newItem)
+                        self.newItemQuantity = 0.0
+                        self.newItemName = ""
+                    }label: {
+                        Image(systemName: "pin")
+                    }
+                }
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear{
-               
+                
                 getPrice()
                 
-               
-                    
+                
+                
             }
-           
+            
             
         }
         
@@ -206,7 +220,7 @@ struct StockView: View {
                     }
                     
                 }
-               
+                
             }
         }
         .resume()
