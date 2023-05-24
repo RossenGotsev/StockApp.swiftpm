@@ -113,14 +113,37 @@ struct StockView: View {
     @State var StockName = ""
    @State var url = URL(string: "")
     @EnvironmentObject var SSearch: Search
-
+    @Binding var items: [ShoppingItem]
+    @State var newItemName: String = ""
+    @State var newItemQuantity: Double = 0.0
+    
     var body: some View {
         NavigationView{
             
             VStack{
                 Text("\(StockName)")
+                
+                Button{
+                    let newItemName = SSearch.search
+                    let newItemQuantity = StockPrice
+                    let newItem = ShoppingItem(Name: newItemName, Quantity: newItemQuantity)
+                                    
+                                    items.append(newItem)
+                    self.newItemQuantity = 0.0
+                    self.newItemName = ""
+                }label: {
+                    Image(systemName: "pin")
+                }
+                .offset(x: 150, y: 10)
+
+                Text("\(StockName)")
                     .font(.largeTitle)
                     .scaleEffect(1.3)
+            
+                Spacer()
+                    .frame(height:100)
+                
+              
              graph()
              
                 
@@ -128,10 +151,11 @@ struct StockView: View {
                 
                 VStack{
                     ZStack{
-                        
+                      
+                    
                         Rectangle()
                             .frame(maxWidth: .infinity, maxHeight: 200)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.white)
                         Text("$\(StockPrice, specifier: "%.2f")")
                             .font(.largeTitle)
                             .foregroundColor(.black)
