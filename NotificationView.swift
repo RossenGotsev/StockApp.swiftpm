@@ -35,7 +35,7 @@ struct NotificationView: View {
                             }
                         }
                     }
-                    .scaleEffect(1.6)
+                    .scaleEffect(1.3)
                     Button(action: {
                         UserDefaults.standard.set(selectedTimespan, forKey: "timespan")
                     }, label: {

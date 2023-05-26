@@ -121,7 +121,7 @@ struct StockView: View {
         NavigationView{
             
             VStack{
-                Text("\(StockName)")
+               
                 
                 Button{
                     let newItemName = SSearch.search
@@ -203,10 +203,10 @@ struct StockView: View {
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
-                    //print(json)
+                    print(json)
                     guard let timeSeriesDictionary = json ["quoteResponse"] as? NSDictionary else {return}
-                    
-//                    print(timeSeriesDictionary)
+
+//                   print(timeSeriesDictionary)
                     guard let prices =  timeSeriesDictionary["result"] as? NSArray else {return}
                     //print(prices[0])
                     guard let Sprice =  prices[0] as? NSDictionary else {return}

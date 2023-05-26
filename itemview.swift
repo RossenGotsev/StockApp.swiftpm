@@ -13,7 +13,7 @@ struct ItemView: View {
             
             Text(currentitem.Name)
                 .font(.largeTitle)
-            Text("\(currentitem.Quantity)")
+            Text("$\(currentitem.Quantity)")
                 .font(.title3)
 
     }
