@@ -25,8 +25,12 @@ struct ContentView: View {
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
        
-                    List(items,id: \.self) { currentitem in
-                        ItemView(currentitem: currentitem)
+                    List{
+                        ForEach(items,id: \.self) { currentitem in
+                            ItemView(currentitem: currentitem)
+                        }.onDelete  { indexSet in
+                            items.remove(atOffsets: indexSet)
+                        }
                         HStack{
                             VStack{
                             
