@@ -31,6 +31,7 @@ struct ContentView: View {
                         }.onDelete  { indexSet in
                             items.remove(atOffsets: indexSet)
                         }
+                        .listRowSeparator(.hidden,edges: .bottom)
                         HStack{
                             VStack{
                             
@@ -49,7 +50,8 @@ struct ContentView: View {
                 .foregroundColor(.blue)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
-                        TextField("Search Stocks", text: $SSearch.search)
+                        TextField("Search Ticker", text: $SSearch.search)
+                            .disableAutocorrection(true)
                             .textFieldStyle(.roundedBorder)
                             .frame(minWidth: 200, idealWidth: 240, maxWidth: 700)
                         
