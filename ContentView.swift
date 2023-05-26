@@ -27,13 +27,15 @@ struct ContentView: View {
        
                     List(items,id: \.self) { currentitem in
                         ItemView(currentitem: currentitem)
+                            .listRowSeparator(.hidden, edges: .bottom)
                         HStack{
                             VStack{
                             
                             }
                         }
                     }
-//
+                  
+
                     Spacer()
                                             .frame(height: 250)
                     

@@ -122,19 +122,6 @@ struct StockView: View {
             
             VStack{
                 Text("\(StockName)")
-                
-                Button{
-                    let newItemName = SSearch.search
-                    let newItemQuantity = StockPrice
-                    let newItem = ShoppingItem(Name: newItemName, Quantity: newItemQuantity)
-                                    
-                                    items.append(newItem)
-                    self.newItemQuantity = 0.0
-                    self.newItemName = ""
-                }label: {
-                    Image(systemName: "pin")
-                }
-                .offset(x: 150, y: 10)
 
                 Text("\(StockName)")
                     .font(.largeTitle)
