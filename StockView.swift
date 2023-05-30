@@ -65,25 +65,22 @@ struct graph: View {
             
         }
     }
-    func GetPrice() {
-        url=URL(string: "https://query1.finance.yahoo.com/v6/finance/quote?symbols=\(SSearch.search)")!
+    func getPrice() {
+        url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(SSearch.search)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
         
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
                     print(json)
-                    guard let timeSeriesDictionary = json ["quoteResponse"] as? NSDictionary else {return}
+                    guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
                     
-//                    print(timeSeriesDictionary)
-                    guard let prices =  timeSeriesDictionary["result"] as? NSArray else {return}
-                    //print(prices[0])
-                    guard let Sprice =  prices[0] as? NSDictionary else {return}
-                    //print(Sprice["ask"]!)
-                    guard let stockPrice =  Sprice["ask"] as? Double else {return}
-                   
+                    //print(timeSeriesDictionary["2023-05-09 20:00:00"])
+                    let allData = timeSeriesDictionary.allValues
+                    guard let prices =  allData[99] as? NSDictionary else {return}
+                    guard let stockPrice =  prices["4. close"] as? String else {return}
                     print(stockPrice)
                     DispatchQueue.main.async {
-                        StockPrice = stockPrice
+                        StockPrice = Double(stockPrice)!
                     }
                     
                 }
@@ -91,6 +88,7 @@ struct graph: View {
             }
         }
         .resume()
+        
         
     }
 }
@@ -110,8 +108,8 @@ extension Array where Element == Double {
 
 struct StockView: View {
     @State var StockPrice = 0.0
-    @State var StockName = ""
-   @State var url = URL(string: "")
+    
+    @State var url = URL(string: "")
     @EnvironmentObject var SSearch: Search
     @Binding var items: [ShoppingItem]
     @State var newItemName: String = ""
@@ -121,18 +119,18 @@ struct StockView: View {
         NavigationView{
             
             VStack{
-                Text("\(StockName)")
-
-                Text("\(StockName)")
+                
+                
+                Text("\(SSearch.search)")
                     .font(.largeTitle)
                     .scaleEffect(1.3)
-            
+                
                 Spacer()
                     .frame(height:100)
                 
-              
-             graph()
-             
+                
+                graph()
+                
                 
                 Divider()
                 
@@ -185,25 +183,21 @@ struct StockView: View {
     
     
     func getPrice() {
-        url=URL(string: "https://query1.finance.yahoo.com/v6/finance/quote?symbols=\(SSearch.search)")!
+        url=URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(SSearch.search)&interval=5min&apikey=JUHAWMR1G46CJSY9")!
         
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if let data = data {
                 if let json = try? JSONSerialization.jsonObject(with: data) as? [String:Any] {
                     print(json)
-                    guard let timeSeriesDictionary = json ["quoteResponse"] as? NSDictionary else {return}
-
-//                   print(timeSeriesDictionary)
-                    guard let prices =  timeSeriesDictionary["result"] as? NSArray else {return}
-                    //print(prices[0])
-                    guard let Sprice =  prices[0] as? NSDictionary else {return}
-                    //print(Sprice["ask"]!)
-                    guard let stockPrice =  Sprice["ask"] as? Double else {return}
-                    guard let stockName =  Sprice["displayName"] as? String else {return}
+                    guard let timeSeriesDictionary = json ["Time Series (5min)"] as? NSDictionary else {return}
+                    
+                    //print(timeSeriesDictionary["2023-05-09 20:00:00"])
+                    let allData = timeSeriesDictionary.allValues
+                    guard let prices =  allData[99] as? NSDictionary else {return}
+                    guard let stockPrice =  prices["4. close"] as? String else {return}
                     print(stockPrice)
                     DispatchQueue.main.async {
-                        StockPrice = stockPrice
-                        StockName = stockName
+                        StockPrice = Double(stockPrice)!
                     }
                     
                 }
@@ -211,6 +205,7 @@ struct StockView: View {
             }
         }
         .resume()
+        
         
     }
     
