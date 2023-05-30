@@ -114,7 +114,8 @@ struct StockView: View {
     @Binding var items: [ShoppingItem]
     @State var newItemName: String = ""
     @State var newItemQuantity: Double = 0.0
-    
+    @State var NewImageName = "pin"
+    @State var pinToggle = false
     var body: some View {
         NavigationView{
             
@@ -157,18 +158,22 @@ struct StockView: View {
                         let newItemName = SSearch.search
                         let newItemQuantity = StockPrice
                         let newItem = ShoppingItem(Name: newItemName, Quantity: newItemQuantity)
+                        pinToggle.toggle()
+                        
+                        
                         
                         items.append(newItem)
                         self.newItemQuantity = 0.0
                         self.newItemName = ""
                     }label: {
-                        Image(systemName: "pin")
+                        Image(systemName: "\(NewImageName)")
                     }
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onAppear{
                 
+            
                 getPrice()
                 
                 

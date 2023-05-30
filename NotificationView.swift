@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UserNotifications
 
 struct NotificationView: View {
     @State var notificationInterval = 0
@@ -22,6 +23,16 @@ struct NotificationView: View {
         
         NavigationView{
             VStack{
+                Button("request permission"){
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("Permission granted")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+                
                 Group{
                     VStack(spacing:1){
                         HStack(spacing:1){
