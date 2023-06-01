@@ -51,21 +51,21 @@ struct ContentView: View {
                             .disableAutocorrection(true)
                             .textFieldStyle(.roundedBorder)
                             .frame(minWidth: 200, idealWidth: 240, maxWidth: 700)
-                        
+
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         NavigationLink("Search"){
                             StockView(items:$items)
                         }
-                        
+
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
                         NavigationLink {
-                            NotificationView()
+                            NotificationView(items: $items)
                         } label: {
                             Label("notification", systemImage: "bell")
                         }
-                        
+
                     }
                     
                     
