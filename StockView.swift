@@ -57,7 +57,7 @@ struct graph: View {
             }
             .onAppear{
                 
-                GetPrice()
+                getPrice()
                 
                 
                 
